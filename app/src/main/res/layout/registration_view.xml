@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#448ee4"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/logo_header"
@@ -27,74 +27,76 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/logo" />
+
         </LinearLayout>
 
-
-        <EditText
-            android:id="@+id/connexion_txt"
+        <TextView
+            android:id="@+id/inscription_txt"
             android:layout_width="250dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:background="@null"
             android:contextClickable="false"
-            android:drawableBottom="@null"
             android:ems="10"
             android:inputType="text"
-            android:text="Connectez-vous"
+            android:text="Inscrivez-vous"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#448ee4"
             android:textSize="32sp"
-            android:textStyle="bold"
-            android:visibility="visible" />
-
+            android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/txt_inscrire"
+            android:id="@+id/placeholder_email"
             android:layout_width="260dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="E-mail"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@color/black" />
+            android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/placeholder_password"
+            android:id="@+id/placeholder_confirm_email"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="Confirmez votre E-mail"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/placeholder_mdp"
             android:layout_width="260dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="Mot de passe"
-            android:inputType="textPassword"
-            android:textColorHint="@color/black" />
+            android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/button_connexion"
-            android:layout_width="180dp"
-            android:layout_height="55dp"
+        <EditText
+            android:id="@+id/placeholder_confirm_mdp"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:backgroundTint="#448ee4"
-            android:text="Me connecter"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="Confirmez votre mot de passe"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/button_registration"
             android:layout_width="180dp"
             android:layout_height="55dp"
             android:layout_gravity="center"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="35dp"
             android:backgroundTint="#448ee4"
             android:text="M'inscrire"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
             android:textSize="18sp" />
-
-
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
