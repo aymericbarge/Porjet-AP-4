@@ -3,28 +3,100 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RegistrationActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="top|center_vertical"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-250dp">
 
         <LinearLayout
-            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:background="#448ee4"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/logo_header"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:src="@drawable/logo" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/inscription_txt"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:contextClickable="false"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Inscrivez-vous"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#448ee4"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/placeholder_email"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/placeholder_confirm_email"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="Confirmez votre E-mail"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/placeholder_mdp"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="Mot de passe"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/placeholder_confirm_mdp"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="Confirmez votre mot de passe"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/button_registration"
+            android:layout_width="180dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:backgroundTint="#448ee4"
+            android:text="M'inscrire"
+            android:textSize="18sp" />
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
