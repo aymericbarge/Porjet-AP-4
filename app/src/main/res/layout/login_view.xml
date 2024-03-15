@@ -51,7 +51,7 @@
 
 
         <EditText
-            android:id="@+id/txt_inscrire"
+            android:id="@+id/email_placeholder"
             android:layout_width="260dp"
             android:layout_height="48dp"
             android:layout_gravity="center"

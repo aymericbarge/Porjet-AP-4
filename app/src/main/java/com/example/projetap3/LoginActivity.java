@@ -12,29 +12,32 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String API_URL = "http://www3.sio.local/api";
+    private static final String API_URL = "http://192.168.1.15/api";
 
     private EditText emailEditText;
     private EditText passwordEditText;
-    private Button loginButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_view);
 
-        emailEditText = findViewById(R.id.placeholder_email);
+        emailEditText = findViewById(R.id.email_placeholder);
         passwordEditText = findViewById(R.id.placeholder_password);
-        loginButton = findViewById(R.id.button_connexion);
+        Button loginButton = findViewById(R.id.button_connexion);
 
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -52,10 +55,10 @@ public class LoginActivity extends AppCompatActivity {
 
         });
     }
-    
+
     private void login(String email, String password) {
-        StringRequest request = new StringRequest(Request.Method.POST, API_URL, "login",
-                new Response.Listener<String>(){
+        StringRequest request = new StringRequest(Request.Method.POST, API_URL + "utilisateurs",
+                new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -64,10 +67,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             SharedPreferences preferences = getSharedPreferences("user_preferences", MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
-                            editor.putString("token", token);
+                            editor.putString("email", token);
                             editor.apply();
 
-                            Intent intent = new Intent(LoginActivity.this, FaudraFaireUneActivitePourCa.class);
+                            Intent intent = new Intent(LoginActivity.this, ArticleActivity.class);
                             startActivity(intent);
                             finish();
                         } catch (JSONException e) {
@@ -76,19 +79,24 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
                     }
-                });
-
-        new Response.ErrorListener() {
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this, "Vérifiez votre connexion Internet puis réessayez", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this, "Vérifiez votre connexion Internet puis réessayez", Toast.LENGTH_SHORT).show();
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("password", password);
+                return params;
             }
         };
-        request.setTag(new HashMap<String, String>() {{
-            put("email", email);
-            put("password", password);
-        }});
 
-        Volley.getInstance(this).add(request);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
     }
 }
