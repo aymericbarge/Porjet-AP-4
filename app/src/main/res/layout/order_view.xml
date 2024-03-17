@@ -28,42 +28,48 @@
             android:src="@drawable/logo" />
     </LinearLayout>
 
-public class MainActivity extends AppCompatActivity {
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderActivity">
 
-    private Article article;
+    <TextView
+        android:id="@+id/nomArticle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_margin="16dp" />
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    <TextView
+        android:id="@+id/prixArticle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nomArticle"
+        android:layout_margin="16dp" />
 
-        // Initialiser l'article
-        article = new Article("Nom de l'article", 10.0, R.drawable.image_article);
+    <TextView
+        android:id="@+id/quantiteArticle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prixArticle"
+        android:layout_margin="16dp" />
 
-        // Remplir les vues avec les informations de l'article
-        TextView nomArticle = findViewById(R.id.nom_article);
-        nomArticle.setText(article.getNom());
+    <TextView
+        android:id="@+id/totalCommande"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quantiteArticle"
+        android:layout_margin="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        TextView prixArticle = findViewById(R.id.prix_article);
-        prixArticle.setText(String.format("%.2f €", article.getPrix()));
+    <Button
+        android:id="@+id/boutonConfirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Confirmer la commande" />
 
-        ImageView imageArticle = findViewById(R.id.image_article);
-        imageArticle.setImageResource(article.getImage());
-
-        // Bouton "Ajouter au panier"
-        Button ajouterPanier = findViewById(R.id.ajouter_panier);
-        ajouterPanier.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Récupérer la quantité saisie
-                int quantite = Integer.parseInt(((EditText) findViewById(R.id.quantite)).getText().toString());
-
-                // Ajouter l'article au panier
-                Panier.getInstance().ajouterArticle(article, quantite);
-
-                // Afficher un message de confirmation
-                Toast.makeText(MainActivity.this, "Article ajouté au panier", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-}
+</RelativeLayout>
