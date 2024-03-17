@@ -4,87 +4,41 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CommandeActivity extends AppCompatActivity {
+public class OrderActivity extends ArticleActivity {
 
     private Article article;
-    private EditText quantite;
-    private Spinner variante;
-    private RadioGroup optionLivraison;
-    private EditText informationPaiement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_commande);
+        setContentView(R.layout.activity_main);
 
-        // Récupérer l'article à partir de l'intent
-        article = getIntent().getParcelableExtra("article");
-
-        // Initialiser les vues
-        quantite = (EditText) findViewById(R.id.quantite);
-        variante = (Spinner) findViewById(R.id.variante);
-        optionLivraison = (RadioGroup) findViewById(R.id.optionLivraison);
-        informationPaiement = (EditText) findViewById(R.id.informationPaiement);
+        // Initialiser l'article
+        article = new Article("Nom de l'article", 10.0, R.drawable.image_article);
 
         // Remplir les vues avec les informations de l'article
-        TextView nomArticle = (TextView) findViewById(R.id.nomArticle);
+        TextView nomArticle = findViewById(R.id.nom_article);
         nomArticle.setText(article.getNom());
 
-        ImageView imageArticle = (ImageView) findViewById(R.id.imageArticle);
+        TextView prixArticle = findViewById(R.id.prix_article);
+        prixArticle.setText(String.format("%.2f €", article.getPrix()));
+
+        ImageView imageArticle = findViewById(R.id.image_article);
         imageArticle.setImageResource(article.getImage());
 
-        TextView prixArticle = (TextView) findViewById(R.id.prixArticle);
-        prixArticle.setText(String.valueOf(article.getPrix()));
-
-        // Remplir la liste des variantes
-        List<String> listeVariantes = new ArrayList<>();
-        for (String var : article.getVariantes()) {
-            listeVariantes.add(var);
-        }
-        ArrayAdapter<String> adapterVariantes = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeVariantes);
-        variante.setAdapter(adapterVariantes);
-
-        // Remplir les options de livraison
-        List<String> listeOptionsLivraison = new ArrayList<>();
-        for (String option : article.getOptionsLivraison()) {
-            listeOptionsLivraison.add(option);
-        }
-        ArrayAdapter<String> adapterOptionsLivraison = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeOptionsLivraison);
-        optionLivraison.setAdapter(adapterOptionsLivraison);
-
-        // Bouton de commande
-        Button boutonCommande = (Button) findViewById(R.id.boutonCommande);
-        boutonCommande.setOnClickListener(new View.OnClickListener() {
+        // Bouton "Ajouter au panier"
+        Button ajouterPanier = findViewById(R.id.ajouter_panier);
+        ajouterPanier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Valider les informations de la commande
-                boolean quantiteValide = !quantite.getText().toString().isEmpty();
-                boolean varianteValide = variante.getSelectedItemPosition() != 0;
-                boolean optionLivraisonValide = optionLivraison.getCheckedRadioButtonId() != -1;
-                boolean informationPaiementValide = !informationPaiement.getText().toString().isEmpty();
+                // Récupérer la quantité saisie
+                int quantite = Integer.parseInt(((EditText) findViewById(R.id.quantite)).getText().toString());
 
-                if (quantiteValide && varianteValide && optionLivraisonValide && informationPaiementValide) {
-                    // Passer la commande
-                    Commande commande = new Commande(
-                            article.getId(),
-                            Integer.parseInt(quantite.getText().toString()),
-                            variante.getSelectedItemPosition(),
-                            optionLivraison.getCheckedRadioButtonId(),
-                            informationPaiement.getText().toString()
-                    );
+                // Ajouter l'article au panier
+                Panier.getInstance().ajouterArticle(article, quantite);
 
-                    // Envoyer la commande au serveur
-                    // ...
-
-                    // Afficher un message de confirmation
-                    Toast.makeText(CommandeActivity.this, "Commande passée avec succès", Toast.LENGTH_SHORT).show();
-
-                    // Terminer l'activité
-                    finish();
-                } else {
-                    // Afficher un message d'erreur
-                    Toast.makeText(CommandeActivity.this, "Veuillez vérifier les informations de votre commande", Toast.LENGTH_SHORT).show();
-                }
+                // Afficher un message de confirmation
+                Toast.makeText(MainActivity.this, "Article ajouté au panier", Toast.LENGTH_SHORT).show();
             }
         });
     }
