@@ -1,44 +1,60 @@
 package com.example.projetap3;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class OrderActivity extends ArticleActivity {
+public class OrderActivity extends AppCompatActivity {
 
-    private Article article;
+    private TextView nomArticle;
+    private TextView prixArticle;
+    private TextView quantiteArticle;
+    private TextView totalCommande;
+    private Button boutonConfirmation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.order_view);
 
-        // Initialiser l'article
-        article = new Article("Nom de l'article", 10.0, R.drawable.image_article);
+        // Récupérer les informations de l'intent
+        Intent intent = getIntent();
+        String nom = intent.getStringExtra("nomArticle");
+        double prix = intent.getDoubleExtra("prixArticle", 0.0);
+        int quantite = intent.getIntExtra("quantiteArticle", 1);
 
-        // Remplir les vues avec les informations de l'article
-        TextView nomArticle = findViewById(R.id.nom_article);
-        nomArticle.setText(article.getNom());
+        // Initialiser les vues
+        nomArticle = findViewById(R.id.nomArticle);
+        prixArticle = findViewById(R.id.prixArticle);
+        quantiteArticle = findViewById(R.id.quantiteArticle);
+        totalCommande = findViewById(R.id.totalCommande);
+        boutonConfirmation = findViewById(R.id.boutonConfirmation);
 
-        TextView prixArticle = findViewById(R.id.prix_article);
-        prixArticle.setText(String.format("%.2f €", article.getPrix()));
+        // Remplir les vues avec les informations de la commande
+        nomArticle.setText(nom);
+        prixArticle.setText(String.format("%.2f €", prix));
+        quantiteArticle.setText(String.valueOf(quantite));
+        totalCommande.setText(String.format("%.2f €", prix * quantite));
 
-        ImageView imageArticle = findViewById(R.id.image_article);
-        imageArticle.setImageResource(article.getImage());
-
-        // Bouton "Ajouter au panier"
-        Button ajouterPanier = findViewById(R.id.ajouter_panier);
-        ajouterPanier.setOnClickListener(new View.OnClickListener() {
+        // Bouton de confirmation
+        boutonConfirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Récupérer la quantité saisie
-                int quantite = Integer.parseInt(((EditText) findViewById(R.id.quantite)).getText().toString());
-
-                // Ajouter l'article au panier
-                Panier.getInstance().ajouterArticle(article, quantite);
+                // Envoyer la commande au serveur
+                // ...
 
                 // Afficher un message de confirmation
-                Toast.makeText(MainActivity.this, "Article ajouté au panier", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OrderActivity.this, "Commande confirmée", Toast.LENGTH_SHORT).show();
+
+                // Terminer l'activité
+                finish();
             }
         });
     }
