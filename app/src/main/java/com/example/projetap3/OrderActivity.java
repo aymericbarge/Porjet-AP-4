@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class OrderActivity extends AppCompatActivity {
 
+    private static final String API_URL = "http://192.168.1.15/api";
     private TextView nomArticle;
     private TextView prixArticle;
     private TextView quantiteArticle;
@@ -51,7 +52,7 @@ public class OrderActivity extends AppCompatActivity {
                 // ...
 
                 // Afficher un message de confirmation
-                Toast.makeText(OrderActivity.this, "Commande confirmée", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OrderActivity.this, "Commande confirmée, merci de votre achat!", Toast.LENGTH_SHORT).show();
 
                 // Terminer l'activité
                 finish();
