@@ -1,13 +1,20 @@
 package com.example.projetap3;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class RecapitulatifOrderActivity extends AppCompatActivity {
 
@@ -16,8 +23,10 @@ public class RecapitulatifOrderActivity extends AppCompatActivity {
     private TextView prixArticle;
     private TextView quantiteArticle;
     private TextView totalCommande;
+    private Spinner spinnerQuantite;
     private Button boutonConfirmation;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +51,25 @@ public class RecapitulatifOrderActivity extends AppCompatActivity {
         quantiteArticle.setText(String.valueOf(quantite));
         totalCommande.setText(String.format("%.2f €", prix * quantite));
 
+        // Initialiser le spinner
+        spinnerQuantite = findViewById(R.id.spinner_quantite);
+
+        // Créer une liste d'entiers
+        List<Integer> quantites = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        // Créer un ArrayAdapter pour les options de quantité
+        ArrayAdapter<Integer> adapterQuantite = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, quantites);
+
+        // Définir l'adapter sur le spinner
+        spinnerQuantite.setAdapter(adapterQuantite);
+
+        // Gérer l'événement onItemSelected pour réagir à la sélection d'une quantité
+
+
+        // Afficher la quantité sélectionnée
+        String quantiteSelectionnee = null;
+        Toast.makeText(RecapitulatifOrderActivity.this, "Quantité sélectionnée : " + quantiteSelectionnee, Toast.LENGTH_SHORT).show();
+
 
         // Bouton de confirmation
         boutonConfirmation.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +83,8 @@ public class RecapitulatifOrderActivity extends AppCompatActivity {
 
                 // Terminer l'activité
                 finish();
+
+
             }
         });
     }

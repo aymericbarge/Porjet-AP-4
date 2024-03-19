@@ -65,7 +65,7 @@
             android:layout_marginHorizontal="150dp"
             android:layout_marginTop="-65dp"
             android:layout_marginBottom="50dp"
-            android:autoText="true"
+            android:autoText="false"
             android:gravity="center"
             android:textAlignment="center" />
 
@@ -112,7 +112,12 @@
             android:layout_marginLeft="170dp"
             android:layout_marginTop="-65dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="50dp" />
+            android:layout_marginBottom="50dp"
+            android:contextClickable="true" />
+
+
+
+
 
         <TextView
             android:id="@+id/totalCommande"
