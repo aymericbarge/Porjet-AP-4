@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class OrderActivity extends AppCompatActivity {
+public class RecapitulatifOrderActivity extends AppCompatActivity {
 
     private static final String API_URL = "http://192.168.1.15/api";
     private TextView nomArticle;
@@ -44,6 +42,7 @@ public class OrderActivity extends AppCompatActivity {
         quantiteArticle.setText(String.valueOf(quantite));
         totalCommande.setText(String.format("%.2f €", prix * quantite));
 
+
         // Bouton de confirmation
         boutonConfirmation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +51,7 @@ public class OrderActivity extends AppCompatActivity {
                 // ...
 
                 // Afficher un message de confirmation
-                Toast.makeText(OrderActivity.this, "Commande confirmée, merci de votre achat!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecapitulatifOrderActivity.this, "Commande confirmée, merci de votre achat!", Toast.LENGTH_SHORT).show();
 
                 // Terminer l'activité
                 finish();
