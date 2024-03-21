@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_view);
 
-        emailEditText = findViewById(R.id.email_placeholder);
+        emailEditText = findViewById(R.id.txt_email);
         passwordEditText = findViewById(R.id.placeholder_password);
         Button connectButton = findViewById(R.id.button_connexion);
         Button testApiButton = findViewById(R.id.test_api_connection);
