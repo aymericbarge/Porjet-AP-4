@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/profile_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -45,7 +43,7 @@
                 android:contextClickable="false"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Mon profil"
+                android:text="Modifier mon profil"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#448ee4"
@@ -59,7 +57,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:ems="10"
-                android:hint="Antoine"
+                android:hint="Nom"
                 android:textColorHint="@color/black"
                 android:inputType="textPersonName" />
 
@@ -70,7 +68,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:ems="10"
-                android:hint="Henocque"
+                android:hint="Prenom"
                 android:textColorHint="@color/black"
                 android:inputType="textPersonName" />
 
@@ -81,7 +79,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:ems="10"
-                android:hint="24/02/2003"
+                android:hint="Date de naissance"
                 android:textColorHint="@color/black"
                 android:inputType="date" />
 
@@ -92,7 +90,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:ems="10"
-                android:hint="Football"
+                android:hint="Sport pratiqué"
                 android:textColorHint="@color/black"
                 android:inputType="date" />
 
@@ -103,32 +101,64 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:ems="10"
-                android:hint="0751604992"
+                android:hint="Numéro de téléphone"
                 android:textColorHint="@color/black"
                 android:inputType="phone" />
 
             <EditText
                 android:id="@+id/update_email"
-                android:layout_width="290dp"
+                android:layout_width="260dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:ems="10"
-                android:hint="antoine.henocque@ltpdampierre.fr"
+                android:hint="E-mail"
                 android:textColorHint="@color/black"
                 android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/actual_mdp"
+                android:layout_width="260dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Mot de passe actuel"
+                android:textColorHint="@color/black"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/new_mdp"
+                android:layout_width="260dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Nouveau mot de passe"
+                android:textColorHint="@color/black"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/apply_new_mdp"
+                android:layout_width="260dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Confirmer le mot de passe"
+                android:textColorHint="@color/black"
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/update_profile"
                 android:layout_width="180dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="35dp"
                 android:backgroundTint="#448ee4"
-                android:text="Modifier mon profil"
+                android:text="Appliquer"
                 android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
