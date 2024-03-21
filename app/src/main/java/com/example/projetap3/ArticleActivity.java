@@ -26,8 +26,7 @@ import java.util.List;
 
 public class ArticleActivity extends AppCompatActivity {
     private static final String API_URL = "http://192.168.1.15/api";
-    private RecyclerView recyclerView;
-    private List<String> itemList = new ArrayList<>();
+    private final List<String> itemList = new ArrayList<>();
     private RecyclerView.Adapter adapter;
 
     @Override
@@ -35,7 +34,7 @@ public class ArticleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_view);
 
-        recyclerView = findViewById(R.id.liste_article);
+        RecyclerView recyclerView = findViewById(R.id.liste_article);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecyclerView.Adapter() {
             @Override
@@ -59,7 +58,7 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        StringRequest request = new StringRequest(Request.Method.GET, API_URL,
+        StringRequest request = new StringRequest(Request.Method.GET, API_URL + "/articles",
                 response -> {
                     try {
                         JSONArray jsonArray = new JSONArray(response);

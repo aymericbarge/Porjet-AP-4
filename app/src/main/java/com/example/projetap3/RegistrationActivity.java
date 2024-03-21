@@ -35,7 +35,7 @@ public class RegistrationActivity extends AppCompatActivity {
         confirmEmailEditText = findViewById(R.id.placeholder_confirm_email);
         passwordEditText = findViewById(R.id.placeholder_mdp);
         confirmPasswordEditText = findViewById(R.id.placeholder_confirm_mdp);
-        Button registerButton = findViewById(R.id.button_registration);
+        Button registerButton = findViewById(R.id.button_inscription);
 
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
